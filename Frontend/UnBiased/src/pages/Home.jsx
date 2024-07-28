@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { ArticleView } from '../components/ArticleView';
 // import articles from '/src/assets/news_test.json'
 // import IMAGE from "/src/assets/Poster.png"
@@ -14,7 +14,7 @@ function Home() {
   const [searchParams, setSearchParams] = useSearchParams({ query: "", page: 0 });
   const query = (searchParams.get('query'));
 
-  const Months =  ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const Months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
   const format_date_time = (t) => {
     // 2024-07-14T00:27:11Z
@@ -29,7 +29,6 @@ function Home() {
 
   useEffect(() => {
     setLoading(true);
-      fetch(`http://localhost:8080/quote`)
     try {
       let Q = query ? query : "";
       fetch(`http://localhost:8080/quote?query=${Q}`)
@@ -58,26 +57,37 @@ function Home() {
     setLoading(false);
   }, [searchParams]);
 
+  // useEffect(() => {
+  //   if (selectedArticle) {
+  //     setSearchParams({...searchParams, view: "Article" });
+  //   }
+  //   else {
+  //     const newObj = (({ view, ...rest }) => rest)(searchParams);
+  //     setSearchParams(newObj )
+  //   }
+  // }, [selectedArticle])
+
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
+  // if (error) {
+  //   return ;
+  // }
 
-  if(selectedArticle){
-    return <ArticleView selectedArticle={selectedArticle} setSelectedArticle={setSelectedArticle} format_date_time={format_date_time}/>
+  if (selectedArticle) {
+    return <ArticleView selectedArticle={selectedArticle} setSelectedArticle={setSelectedArticle} format_date_time={format_date_time} />
   }
 
   return (
     <div className="App">
+      <Link to="/VerifyBot">Visit Chatbot</Link>
       <form onSubmit={(e) => {
         e.preventDefault();
-        if(searchText != ""){
+        if (searchText != "") {
           setSearchParams({ query: encodeURIComponent(searchText) });
         }
-        else{
+        else {
           setSearchParams({});
         }
       }}>
@@ -85,14 +95,17 @@ function Home() {
         <input type="submit" value="Search" />
       </form>
       {query && <h1> {"Searched for: " + decodeURIComponent(query)}</h1>}
+
+      {error && <div>Error: {error.message}</div>}
+
       <ol>
         {data.map((item, index) => (
           <li key={index} style={{ backgroundImage: `url(${item.urlToImage}` }}>
-              <div onClick={()=>setSelectedArticle(item)}>
-                {item.source.name}
-                <h2>{item.title}</h2>
-                {format_date_time(item.publishedAt)}
-              </div>
+            <div onClick={() => setSelectedArticle(item)}>
+              {item.source.name}
+              <h2>{item.title}</h2>
+              {format_date_time(item.publishedAt)}
+            </div>
           </li>
         ))}
       </ol>

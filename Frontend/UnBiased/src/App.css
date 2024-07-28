@@ -38,3 +38,9 @@
 .App form{
   text-align: center;
 }
+.App a{
+  color: white;
+}
+.App a:hover{
+  color: rgb(255, 0, 0);
+}
