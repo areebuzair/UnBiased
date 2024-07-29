@@ -10,13 +10,15 @@ public class NewsVerifier {
     @GetMapping("/verifynewsurl")
     public Reply getNewsVerificationForURL(@RequestParam(defaultValue = "") String URL) {
         System.out.println(URL);
-        return new Reply("The URL you sent is: " + URL + ", but I cannot access it yet");
+        String response = NewsAPI.verifyNews("Tell me if this is true or not. This is the link of a news " + URL);
+        return new Reply("The response from the API is: " + response);
     }
 
     @GetMapping("/verifynews")
     public Reply getNewsVerification(@RequestParam(defaultValue = "") String text) {
         System.out.println(text);
-        return new Reply("I am dumb because I do not have me a brain yet. Please code one for me.");
+        String response = NewsAPI.verifyNews("Tell me if this is true or not. cite some link from where I can get the real news " + text);
+        return new Reply("The response from the API is: " + response);
     }
 
 }
