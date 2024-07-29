@@ -28,7 +28,6 @@ function Home() {
   }
 
   useEffect(() => {
-    setLoading(true);
     try {
       let Q = query ? query : "";
       fetch(`http://localhost:8080/quote?query=${Q}`)
@@ -39,6 +38,7 @@ function Home() {
           return response.json();
         })
         .then(data => {
+          console.log(data)
           setData(data);
           setLoading(false);
         })
@@ -48,7 +48,7 @@ function Home() {
         });
     }
     catch (err) {
-
+      setError(error);
     }
     // articles.map((item) => {
     //   item.urlToImage = IMAGE;
@@ -67,9 +67,6 @@ function Home() {
   //   }
   // }, [selectedArticle])
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
 
   // if (error) {
   //   return ;
@@ -84,6 +81,7 @@ function Home() {
       <Link to="/VerifyBot">Visit Chatbot</Link>
       <form onSubmit={(e) => {
         e.preventDefault();
+        setLoading(true);
         if (searchText != "") {
           setSearchParams({ query: encodeURIComponent(searchText) });
         }
@@ -94,21 +92,28 @@ function Home() {
         <input type="search" value={searchText} onInput={(e) => setSearchText(e.target.value.slice(0, 500))} disabled={loading} />
         <input type="submit" value="Search" />
       </form>
+
       {query && <h1> {"Searched for: " + decodeURIComponent(query)}</h1>}
 
       {error && <div>Error: {error.message}</div>}
 
-      <ol>
-        {data.map((item, index) => (
-          <li key={index} style={{ backgroundImage: `url(${item.urlToImage}` }}>
-            <div onClick={() => setSelectedArticle(item)}>
-              {item.source.name}
-              <h2>{item.title}</h2>
-              {format_date_time(item.publishedAt)}
-            </div>
-          </li>
-        ))}
-      </ol>
+      {loading && <div>Loading...</div>}
+
+      {!loading &&
+        <ol>
+          {(data.length == 0) && <h1 style={{ color: "red" }}>Found Nothing!</h1>}
+
+          {data.map((item, index) => (
+            <li key={index} style={{ backgroundImage: `url(${item.urlToImage}` }}>
+              <div onClick={() => setSelectedArticle(item)}>
+                {item.source.name}
+                <h2>{item.title}</h2>
+                {format_date_time(item.publishedAt)}
+              </div>
+            </li>
+          ))}
+        </ol>
+      }
     </div>
   );
 }

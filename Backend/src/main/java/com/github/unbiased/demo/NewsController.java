@@ -81,12 +81,13 @@ public class NewsController {
             // Wait for the asynchronous call to complete
             if (!latch.await(10, TimeUnit.SECONDS)) {
                 System.out.println("Timeout waiting for news API response");
+                return news_titles;
             }
 
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
-
+        System.out.println("Returned Stuff");
         return news_titles;
     }
 
