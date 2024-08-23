@@ -30,7 +30,7 @@ function Home() {
   useEffect(() => {
     try {
       let Q = query ? query : "";
-      fetch(`http://localhost:8080/quote?query=${Q}`)
+      fetch(`http://localhost:8017/quote?query=${Q}`)
         .then(response => {
           if (!response.ok) {
             throw new Error('Network response was not ok');

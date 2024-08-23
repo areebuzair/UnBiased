@@ -9,7 +9,7 @@ export default function VerifyBot() {
         e.preventDefault();
         if(!Message) return;
         try {
-            fetch(`http://localhost:8080/verifynews?text=${encodeURIComponent(Message)}`)
+            fetch(`http://localhost:8017/verifynews?text=${encodeURIComponent(Message)}`)
                 .then(response => {
                     setMessage("");
                     if (!response.ok) {

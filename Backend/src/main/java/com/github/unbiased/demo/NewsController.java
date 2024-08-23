@@ -20,7 +20,7 @@ public class NewsController {
     @GetMapping("/quote")
     @Cacheable(value = "news_articles", key = "#query + '_' + #page")
     public List<Article> getTrendingNews(@RequestParam(defaultValue = "") String query, @RequestParam(defaultValue = "1") int page) {
-        System.out.println("Method called");
+        System.out.println("Method called; " + query);
         List<Article> news_titles = new ArrayList<Article>();
         CountDownLatch latch = new CountDownLatch(1);
 
@@ -92,9 +92,8 @@ public class NewsController {
     }
 
     //Test
-    @GetMapping("/quoteTest")
-    public String testQuotes(@RequestParam(defaultValue = "") String query, @RequestParam(defaultValue = "1") int page) {
-        // You can now use the 'query' and 'page' parameters in your logic
-        return "Received query: " + query + ", page: " + page;
+    @GetMapping("/test")
+    public String testApplication() {
+        return "Spring-boot server is running";
     }
 }

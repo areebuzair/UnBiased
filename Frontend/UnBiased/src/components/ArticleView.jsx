@@ -11,7 +11,7 @@ export const ArticleView = ({ selectedArticle, setSelectedArticle, format_date_t
 
     const getVerificationForURL = (URL) => {
         setVerificationMessage("Loading...");
-        fetch(`http://localhost:8080/verifynewsurl?URL=${encodeURIComponent(URL)}`)
+        fetch(`http://localhost:8017/verifynewsurl?URL=${encodeURIComponent(URL)}`)
         .then(response => {
             if (!response.ok) {
                 setVerificationMessage("Servers could not be reached");
