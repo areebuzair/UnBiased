@@ -5,13 +5,16 @@ import '../verifyBot.css'
 export default function VerifyBot() {
     const [Message, setMessage] = useState("");
     const [Reply, setReply] = useState("");
+    const [Loading, setLoading] = useState(false);
     const sendRequest = (e) => {
         e.preventDefault();
-        if(!Message) return;
+        setLoading(true);
+        if (!Message) return;
         try {
             fetch(`http://localhost:8017/verifynews?text=${encodeURIComponent(Message)}`)
                 .then(response => {
                     setMessage("");
+                    setLoading(false);
                     if (!response.ok) {
                         setReply("Servers could not be reached");
                     }
@@ -27,6 +30,7 @@ export default function VerifyBot() {
                 });
         }
         catch (err) {
+            setLoading(false);
             console.log(err)
             setReply("Servers could not be reached");
         }
@@ -36,8 +40,8 @@ export default function VerifyBot() {
         <Link to="../">Home</Link>
         {Reply && <h3>{Reply}</h3>}
         <form onSubmit={sendRequest}>
-            <textarea onInput={(e) => setMessage(e.target.value)} value={Message}></textarea><br/>
-            <button>Send Message</button>
+            <textarea onInput={(e) => setMessage(e.target.value)} value={Message}></textarea><br />
+            <button disabled={Loading}>{Loading ? <>Loading...</> : <>Send Message</>}</button>
         </form>
     </div>
 }
