@@ -13,7 +13,8 @@ const TopBar = () => {
       </div>
       <div className={`search-container ${searchActive ? 'active' : ''}`}>
         <button className="search-icon" onClick={() => setSearchActive(!searchActive)}>
-          <img src="E:\Unbiased\UnBiased\Frontend\UnBiased\public\magnify.png" alt="Search" />
+        <img src="/magnify.png" alt="Search" />
+
         </button>
         <input
           type="text"

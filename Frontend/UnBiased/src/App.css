@@ -73,18 +73,3 @@
 .App form{
   text-align: center;
 }
-.App a{
-  color: white;
-  display: inline-block; 
-  padding: 9px 12px; 
-  background-color: purple; 
-  border-radius: 5px; 
-  text-decoration: none;
-}
-.App a:hover{
-  background-color:#900ce9;
-  text-shadow:  0 0 1px black,
-                0 0 2px black,
-                0 0 3px black,
-                0 0 4px black;
-}
