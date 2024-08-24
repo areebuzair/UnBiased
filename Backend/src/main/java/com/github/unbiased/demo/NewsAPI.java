@@ -11,10 +11,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class NewsAPI {
 
     public static String verifyNews(String messageContent) {
-        String message = "{\"messages\":[{\"role\":\"user\",\"content\":\"" + messageContent + "\"}]}";
+        String message = "{\"messages\":[{\"role\":\"user\",\"content\":\"" + messageContent + "\"}],\"web_access\":true}";
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://chatgpt-42.p.rapidapi.com/conversationgpt4-2"))
+                .uri(URI.create("https://chatgpt-42.p.rapidapi.com/gpt4"))
                 .header("x-rapidapi-key", ApiKeys.RapidAPI())
                 .header("x-rapidapi-host", "chatgpt-42.p.rapidapi.com")
                 .header("Content-Type", "application/json")

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './TopBar.css';
+import '../TopBar.css';
 
 const TopBar = () => {
   const [searchActive, setSearchActive] = useState(false);
