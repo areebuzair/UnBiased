@@ -33,6 +33,7 @@ public class NewsController {
                         new TopHeadlinesRequest.Builder()
                                 .q("")
                                 .language("en")
+                                .sources("al-jazeera-english,bbc-news,cnn,espn,financial-post,fortune,fox-sports,ign,independent,medical-news-today,national-geographic,new-scientist,newsweek,politico,the-washington-post,the-washington-times,time")
                                 .page(page)
                                 .build(),
                         new NewsApiClient.ArticlesResponseCallback() {
