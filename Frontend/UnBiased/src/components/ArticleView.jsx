@@ -14,7 +14,7 @@ export const ArticleView = ({ selectedArticle, setSelectedArticle, format_date_t
         fetch(`http://localhost:8017/verifynewsurl?URL=${encodeURIComponent(URL)}`)
         .then(response => {
             if (!response.ok) {
-                setVerificationMessage("Servers could not be reached");
+                setVerificationMessage("Servers could not be reached. Sorry.");
             }
             return response.json();
         })
@@ -38,6 +38,6 @@ export const ArticleView = ({ selectedArticle, setSelectedArticle, format_date_t
         <p>{selectedArticle.content}</p>
         <a href={selectedArticle.url} target="_blank">Read more</a>
         {!verificationMessage && <a onClick={() => getVerificationForURL(selectedArticle.url)}>Verify It</a>}
-        {verificationMessage && <p>{verificationMessage}</p>}
+        {verificationMessage && <p className="AI_Reply">{verificationMessage}</p>}
     </div>
 }

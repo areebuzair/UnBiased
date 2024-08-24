@@ -8,16 +8,20 @@ import '../App.css';
 function Home() {
   const [data, setData] = useState([]);
   const [selectedArticle, setSelectedArticle] = useState(null);
-  const [searchText, setSearchText] = useState("");
+
+  const [searchParams, setSearchParams] = useSearchParams({ query: "", page: 0 });
+  //This text shows up in the URL and is searched
+  const query = (searchParams.get('query'));
+  
+  //This text shows up inside the search bar
+  const [searchBarText, setSearchBarText] = useState(query);
+  
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [searchParams, setSearchParams] = useSearchParams({ query: "", page: 0 });
-  const query = (searchParams.get('query'));
-
-  const Months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
   const format_date_time = (t) => {
     // 2024-07-14T00:27:11Z
+    const Months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     t = t.split("T");
     let date = t[0];
     let time = t[1];
@@ -27,9 +31,22 @@ function Home() {
     return `${date[1]} ${date[2]}, ${date[0]} - ${time}`;
   }
 
-  useEffect(() => {
+  const handleSearchBarSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    if (searchBarText != "") {
+      setSearchParams({ query: encodeURIComponent(searchBarText) });
+    }
+    else {
+      setSearchParams({});
+    }
+    getNewsArticles();
+  }
+
+  const getNewsArticles = () => {
     try {
-      let Q = query ? query : "";
+      let Q = encodeURIComponent(searchBarText);
       fetch(`http://localhost:8017/quote?query=${Q}`)
         .then(response => {
           if (!response.ok) {
@@ -49,13 +66,18 @@ function Home() {
     }
     catch (err) {
       setError(error);
+      setLoading(false);
     }
     // articles.map((item) => {
     //   item.urlToImage = IMAGE;
     // })
     // setData(articles);
-    setLoading(false);
-  }, [searchParams]);
+
+  }
+
+  useEffect(() => {
+    getNewsArticles();
+  }, []);
 
   // useEffect(() => {
   //   if (selectedArticle) {
@@ -78,18 +100,11 @@ function Home() {
 
   return (
     <div className="App">
+
       <Link to="/VerifyBot">Visit Chatbot</Link>
-      <form onSubmit={(e) => {
-        e.preventDefault();
-        setLoading(true);
-        if (searchText != "") {
-          setSearchParams({ query: encodeURIComponent(searchText) });
-        }
-        else {
-          setSearchParams({});
-        }
-      }}>
-        <input type="search" value={searchText} onInput={(e) => setSearchText(e.target.value.slice(0, 500))} disabled={loading} />
+
+      <form onSubmit={(e) => { handleSearchBarSubmit(e); }}>
+        <input type="search" value={searchBarText} onInput={(e) => setSearchBarText(e.target.value.slice(0, 400))} disabled={loading} />
         <input type="submit" value="Search" />
       </form>
 

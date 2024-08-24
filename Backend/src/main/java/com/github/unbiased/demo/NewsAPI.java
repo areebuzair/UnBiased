@@ -29,7 +29,7 @@ public class NewsAPI {
         }
 
         if (response != null) {
-            return prettyPrintJson(response.body());
+            return getResultFromJson(response.body());
         } else {
             return "Failed to fetch news data.";
         }
@@ -45,5 +45,25 @@ public class NewsAPI {
             return json;
         }
     }
+
+    private static String getResultFromJson(String json) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode jsonNode = mapper.readTree(json);
+
+            // Get the "result" field from the JSON
+            JsonNode resultNode = jsonNode.get("result");
+
+            if (resultNode != null) {
+                return resultNode.toString(); // Return the "result" field as a string
+            } else {
+                return "Result field not found";
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "Invalid JSON input. I do apologize for the inconvenience.";
+        }
+    }
+
 
 }

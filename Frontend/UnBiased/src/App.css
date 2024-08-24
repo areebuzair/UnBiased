@@ -37,6 +37,7 @@
   background-color: white;
   padding: 0;
   overflow: hidden;
+  cursor: pointer;
 }
 .App li div{
   min-height: 300px;

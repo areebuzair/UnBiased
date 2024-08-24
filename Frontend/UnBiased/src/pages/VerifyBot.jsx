@@ -32,13 +32,13 @@ export default function VerifyBot() {
         catch (err) {
             setLoading(false);
             console.log(err)
-            setReply("Servers could not be reached");
+            setReply("Servers could not be reached. Sorry.");
         }
     }
 
     return <div className="verifyBot">
         <Link to="../">Home</Link>
-        {Reply && <h3>{Reply}</h3>}
+        {Reply && <p className="AI_Reply">{Reply}</p>}
         <form onSubmit={sendRequest}>
             <textarea onInput={(e) => setMessage(e.target.value)} value={Message}></textarea><br />
             <button disabled={Loading}>{Loading ? <>Loading...</> : <>Send Message</>}</button>
