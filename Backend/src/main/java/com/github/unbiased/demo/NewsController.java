@@ -94,6 +94,6 @@ public class NewsController {
     //Test
     @GetMapping("/test")
     public String testApplication() {
-        return "Spring-boot server is running";
+        return "Spring-boot server is running properly";
     }
 }
