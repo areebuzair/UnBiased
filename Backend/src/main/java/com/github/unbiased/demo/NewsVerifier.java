@@ -11,6 +11,7 @@ public class NewsVerifier {
     public Reply getNewsVerificationForURL(@RequestParam(defaultValue = "") String URL) {
         System.out.println(URL);
         String response = NewsAPI.verifyNews("Tell me if this is true or not. This is the link of a news. Your first sentence should be if it is true or not. Then tell me if this news is left leaninig or right leaning. Give it a bias score. " + URL);
+        System.out.println(response);
         return new Reply("The response from the API is: " + response);
     }
 

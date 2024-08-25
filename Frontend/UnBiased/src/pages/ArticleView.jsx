@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 import '../Article.css'
 
 export const ArticleView = ({ selectedArticle, format_date_time }) => {
 
     const [verificationMessage, setVerificationMessage] = useState("");
-    const Navigate = useNavigate();
+    const navigateTo = useNavigate();
 
     useEffect(()=>{
         document.body.scrollIntoView();
@@ -13,6 +13,8 @@ export const ArticleView = ({ selectedArticle, format_date_time }) => {
 
     const getVerificationForURL = (URL) => {
         setVerificationMessage("Loading...");
+        // setVerificationMessage("This is a test reply\nYo")
+        // return;
         fetch(`http://localhost:8017/verifynewsurl?URL=${encodeURIComponent(URL)}`)
         .then(response => {
             if (!response.ok) {
@@ -21,7 +23,7 @@ export const ArticleView = ({ selectedArticle, format_date_time }) => {
             return response.json();
         })
         .then(data => {
-            console.log(data);
+            console.log(data.content);
             setVerificationMessage(data.content)
         })
         .catch(error => {
@@ -31,8 +33,12 @@ export const ArticleView = ({ selectedArticle, format_date_time }) => {
         });
     }
 
+    if(!selectedArticle){
+        return <Navigate to="../" />
+    }
+
     return <div className="article">
-        <a onClick={()=>{Navigate(-1);}}>Back</a>
+        <a onClick={()=>{navigateTo(-1);}}>Back</a>
         <h2>{selectedArticle.title}</h2>
         <h5>{selectedArticle.source.name} - {format_date_time(selectedArticle.publishedAt)}</h5>
         <h4>{selectedArticle.description}</h4>

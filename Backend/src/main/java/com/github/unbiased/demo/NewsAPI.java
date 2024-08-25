@@ -10,6 +10,25 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class NewsAPI {
 
+    private static String removeQuotationMarks(String str)
+    {
+
+        // Creating a StringBuffer object
+        StringBuilder sb = new StringBuilder(str);
+
+        // Removing the last character
+        // of a string
+        sb.delete(str.length() - 1, str.length());
+
+        // Removing the first character
+        // of a string
+        sb.delete(0, 1);
+
+        // Converting StringBuffer into
+        // string & return modified string
+        return sb.toString();
+    }
+
     public static String verifyNews(String messageContent) {
         String message = "{\"messages\":[{\"role\":\"user\",\"content\":\"" + messageContent + "\"}],\"web_access\":true}";
 
@@ -55,7 +74,7 @@ public class NewsAPI {
             JsonNode resultNode = jsonNode.get("result");
 
             if (resultNode != null) {
-                return resultNode.toString(); // Return the "result" field as a string
+                return removeQuotationMarks(resultNode.toString()); // Return the "result" field as a string
             } else {
                 return "Result field not found";
             }
