@@ -9,12 +9,18 @@ function Home() {
   const [data, setData] = useState([]);
   const [selectedArticle, setSelectedArticle] = useState(null);
 
+
+/*
+  const Options = ["Arts", "Science", "Entertainment", "Sports", "Politics", "Business"];
+  const [selectedOptions, setSelectedOptions] = useState(localStorage.getItem("selected-options"));
+*/
+
   const [searchParams, setSearchParams] = useSearchParams({ query: "", page: 0 });
   //This text shows up in the URL and is searched
   const query = (searchParams.get('query'));
   
   //This text shows up inside the search bar
-  const [searchBarText, setSearchBarText] = useState(query);
+  // const [searchBarText, setSearchBarText] = useState(query);
   
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -46,7 +52,7 @@ function Home() {
 
   const getNewsArticles = () => {
     try {
-      let Q = encodeURIComponent(searchBarText);
+      let Q = encodeURIComponent(query);
       fetch(`http://localhost:8017/quote?query=${Q}`)
         .then(response => {
           if (!response.ok) {
@@ -77,7 +83,7 @@ function Home() {
 
   useEffect(() => {
     getNewsArticles();
-  }, []);
+  }, [searchParams]);
 
   // useEffect(() => {
   //   if (selectedArticle) {
@@ -101,12 +107,12 @@ function Home() {
   return (
     <div className="App">
 
-      <Link to="/VerifyBot">Visit Chatbot</Link>
+      {/* <Link to="/VerifyBot">Visit Chatbot</Link> */}
 
-      <form onSubmit={(e) => { handleSearchBarSubmit(e); }}>
+      {/* <form onSubmit={(e) => { handleSearchBarSubmit(e); }}>
         <input type="search" value={searchBarText} onInput={(e) => setSearchBarText(e.target.value.slice(0, 400))} disabled={loading} />
         <input type="submit" value="Search" />
-      </form>
+      </form> */}
 
       {query && <h1> {"Searched for: " + decodeURIComponent(query)}</h1>}
 
