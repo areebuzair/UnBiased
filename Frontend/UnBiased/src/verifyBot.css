@@ -7,7 +7,7 @@
     border: 1px solid #8e8686;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: (0.0,46);
+    background-color: #0c2a54;
     font-family: 'Arial', sans-serif;
     text-align: center;
 }
@@ -43,8 +43,8 @@
 
 .verifyBot button {
     padding: 10px 20px;
-    background-color: #3016f7;
-    color: #fff;
+    background-color: #e1cce0;
+    color: #000000;
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -53,7 +53,7 @@
 }
 
 .verifyBot button:hover {
-    background-color: #2604ff;
+    background-color: #ff04ff;
     transform: scale(1.05);
 }
 
