@@ -1,12 +1,12 @@
 .App {
 
   background-color: #000000;
-  background-image: linear-gradient(147deg, #000000 0%, #434343 74%);
+  /* background-image: linear-gradient(147deg, #000000 0%, #434343 74%); */
 
   color: white;
   padding: 5px;
   box-sizing: border-box;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   /* text-shadow: 1px 0px 0 black,
                0px 1px 0 black,
                0px -1px 0 black,

@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
-import { ArticleView } from '../components/ArticleView';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 // import articles from '/src/assets/news_test.json'
 // import IMAGE from "/src/assets/Poster.png"
 import '../App.css';
 
-function Home() {
+function Home({ setSelectedArticle, format_date_time }) {
   const [data, setData] = useState([]);
-  const [selectedArticle, setSelectedArticle] = useState(null);
+  // const [selectedArticle, setSelectedArticle] = useState(null);
 
 
 /*
@@ -25,17 +24,7 @@ function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const format_date_time = (t) => {
-    // 2024-07-14T00:27:11Z
-    const Months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    t = t.split("T");
-    let date = t[0];
-    let time = t[1];
-    time = time.replace("Z", "");
-    date = date.split("-");
-    date[1] = Months[parseInt(date[1] - 1)];
-    return `${date[1]} ${date[2]}, ${date[0]} - ${time}`;
-  }
+  const Navigate = useNavigate();
 
   const handleSearchBarSubmit = (e) => {
     e.preventDefault();
@@ -51,6 +40,8 @@ function Home() {
   }
 
   const getNewsArticles = () => {
+    setLoading(true);
+    setError(null);
     try {
       let Q = encodeURIComponent(query);
       fetch(`http://localhost:8017/quote?query=${Q}`)
@@ -85,6 +76,11 @@ function Home() {
     getNewsArticles();
   }, [searchParams]);
 
+  const showArticle =(item)=> {
+    setSelectedArticle(item);
+    Navigate("/ReadArticle");
+  }
+
   // useEffect(() => {
   //   if (selectedArticle) {
   //     setSearchParams({...searchParams, view: "Article" });
@@ -100,9 +96,9 @@ function Home() {
   //   return ;
   // }
 
-  if (selectedArticle) {
-    return <ArticleView selectedArticle={selectedArticle} setSelectedArticle={setSelectedArticle} format_date_time={format_date_time} />
-  }
+  // if (selectedArticle) {
+  //   return <ArticleView selectedArticle={selectedArticle} setSelectedArticle={setSelectedArticle} format_date_time={format_date_time} />
+  // }
 
   return (
     <div className="App">
@@ -126,7 +122,7 @@ function Home() {
 
           {data.map((item, index) => (
             <li key={index} style={{ backgroundImage: `url(${item.urlToImage}` }}>
-              <div onClick={() => setSelectedArticle(item)}>
+              <div onClick={() => showArticle(item)}>
                 {item.source.name}
                 <h2>{item.title}</h2>
                 {format_date_time(item.publishedAt)}

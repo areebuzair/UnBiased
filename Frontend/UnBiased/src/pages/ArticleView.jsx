@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 import '../Article.css'
 
-export const ArticleView = ({ selectedArticle, setSelectedArticle, format_date_time }) => {
+export const ArticleView = ({ selectedArticle, format_date_time }) => {
 
     const [verificationMessage, setVerificationMessage] = useState("");
+    const Navigate = useNavigate();
 
     useEffect(()=>{
         document.body.scrollIntoView();
@@ -30,7 +32,7 @@ export const ArticleView = ({ selectedArticle, setSelectedArticle, format_date_t
     }
 
     return <div className="article">
-        <input type="button" onClick={() => setSelectedArticle(null)} value="back" />
+        <a onClick={()=>{Navigate(-1);}}>Back</a>
         <h2>{selectedArticle.title}</h2>
         <h5>{selectedArticle.source.name} - {format_date_time(selectedArticle.publishedAt)}</h5>
         <h4>{selectedArticle.description}</h4>
