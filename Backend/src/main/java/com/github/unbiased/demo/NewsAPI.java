@@ -54,16 +54,16 @@ public class NewsAPI {
         }
     }
 
-    private static String prettyPrintJson(String json) {
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            JsonNode jsonNode = mapper.readTree(json);
-            return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonNode);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return json;
-        }
-    }
+    // private static String prettyPrintJson(String json) {
+    //     try {
+    //         ObjectMapper mapper = new ObjectMapper();
+    //         JsonNode jsonNode = mapper.readTree(json);
+    //         return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonNode);
+    //     } catch (IOException e) {
+    //         e.printStackTrace();
+    //         return json;
+    //     }
+    // }
 
     private static String getResultFromJson(String json) {
         try {

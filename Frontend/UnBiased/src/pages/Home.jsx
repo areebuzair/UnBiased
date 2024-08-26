@@ -1,43 +1,46 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { format_date_time } from '../Utilities/formatter';
 // import articles from '/src/assets/news_test.json'
 // import IMAGE from "/src/assets/Poster.png"
 import '../App.css';
 
-function Home({ setSelectedArticle, format_date_time }) {
+function Home({ setSelectedArticle }) {
   const [data, setData] = useState([]);
   // const [selectedArticle, setSelectedArticle] = useState(null);
 
 
-/*
-  const Options = ["Arts", "Science", "Entertainment", "Sports", "Politics", "Business"];
-  const [selectedOptions, setSelectedOptions] = useState(localStorage.getItem("selected-options"));
-*/
+
+  // const Options = ["Arts", "Science", "Entertainment", "Sports", "Politics", "Business"];
+  // const [selectedOptions, setSelectedOptions] = useState(
+  //   (localStorage.getItem("selected-options") ?? "").split(" ")
+  // );
+
 
   const [searchParams, setSearchParams] = useSearchParams({ query: "", page: 0 });
   //This text shows up in the URL and is searched
   const query = (searchParams.get('query'));
-  
+
   //This text shows up inside the search bar
   // const [searchBarText, setSearchBarText] = useState(query);
-  
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const Navigate = useNavigate();
 
-  const handleSearchBarSubmit = (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError(null);
-    if (searchBarText != "") {
-      setSearchParams({ query: encodeURIComponent(searchBarText) });
-    }
-    else {
-      setSearchParams({});
-    }
-    getNewsArticles();
-  }
+  // const handleSearchBarSubmit = (e) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+  //   setError(null);
+  //   if (searchBarText != "") {
+  //     setSearchParams({ query: encodeURIComponent(searchBarText) });
+  //   }
+  //   else {
+  //     setSearchParams({});
+  //   }
+  //   getNewsArticles();
+  // }
 
   const getNewsArticles = () => {
     setLoading(true);
@@ -76,7 +79,7 @@ function Home({ setSelectedArticle, format_date_time }) {
     getNewsArticles();
   }, [searchParams]);
 
-  const showArticle =(item)=> {
+  const showArticle = (item) => {
     setSelectedArticle(item);
     Navigate("/ReadArticle");
   }
@@ -111,6 +114,22 @@ function Home({ setSelectedArticle, format_date_time }) {
       </form> */}
 
       {query && <h1> {"Searched for: " + decodeURIComponent(query)}</h1>}
+
+      {/* {!query &&
+        <div>
+          {Options.map((item, index) => (
+            <span className={'options' + ( (item in selectedOptions)?"-checked":"") } onClick={()=>{
+              setSelectedOptions( // Replace the state
+                [ // with a new array
+                  ...selectedOptions, // that contains all the old items
+                  item // and one new item at the end
+                ]
+              );
+              console.log(selectedOptions)
+            }}>{item}</span>
+          ))}
+        </div>
+      } */}
 
       {error && <div>Error: {error.message}</div>}
 

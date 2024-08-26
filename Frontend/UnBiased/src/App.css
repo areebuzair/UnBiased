@@ -92,3 +92,17 @@
 .App form {
   text-align: center;
 }
+
+.App .options{
+  margin: 5px;
+  padding: 5px;
+  border-radius: 10px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background-color: blue;
+  color: white;
+  display: inline-block;
+  cursor: pointer;
+}
+.App .options-checked{
+  display: none;
+}
