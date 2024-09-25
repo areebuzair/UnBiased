@@ -46,3 +46,6 @@ In the terminal, write:
 ```bash
 npm run dev
 ```
+
+# Note
+The website makes all API calls to http://localhost:8017.
