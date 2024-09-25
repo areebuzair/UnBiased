@@ -1,11 +1,5 @@
 # To run the Front-end of our app:
 
-
-1. [Configure Firebase](https://github.com/areebuzair/UnBiased/edit/readme/Frontend/UnBiased/README.md#configure-firebase)
-2. [Download dependencies](https://github.com/areebuzair/UnBiased/edit/readme/Frontend/UnBiased/README.md#download-dependencies)
-3. [Run the Website](https://github.com/areebuzair/UnBiased/edit/readme/Frontend/UnBiased/README.md#run-the-website)
-
-
 ### Configure Firebase
 First, Firebase needs to be initialized. 
 Open a Firebase app and initialize a firestore database. Create a new collection called `Forum-posts` and ensure that it has read/write permissions set to true in the rules section.
