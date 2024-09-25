@@ -11,3 +11,6 @@ To install, run:
 ```bash
 git clone https://github.com/areebuzair/UnBiased
 ```
+
+- [Set up the Backend](https://github.com/areebuzair/UnBiased/tree/main/Backend#readme)
+- [Set up the Frontend](https://github.com/areebuzair/UnBiased/tree/main/Frontend/UnBiased#readme)
