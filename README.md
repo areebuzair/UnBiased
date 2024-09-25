@@ -1,3 +1,9 @@
-./mvnw spring-boot:run
+# Unbiased
+A react-web app with a springboot server that uses AI to verify news articles and rumours.
+> [!IMPORTANT]  
+> This app makes calls to freemium, external APIs
 
-https://rapidapi.com/rphrp1985/api/chatgpt-42
+To install, run:
+```bash
+git clone https://github.com/areebuzair/UnBiased
+```
