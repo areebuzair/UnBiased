@@ -1,0 +1,43 @@
+.ForumPage{
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.post{
+    padding: 10px;
+    margin: 5px auto;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.388);
+    max-width: 800px;
+
+}
+.post h1, .post h5{
+    margin: 5px;
+}
+.deletePost button{
+    margin: 5px;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    font-size: larger;
+    transition: background .1s;
+}
+.deletePost button:hover{
+    background-color: rgb(255, 106, 0);
+    cursor: pointer;
+}
+.ForumPage .createPostLink{
+    display: block;
+    text-align: right;
+    margin: 5px auto;
+    padding: 10px;
+    font-size: larger;
+    max-width: 800px;
+}
+.ForumPage a{
+    color:aqua;
+    text-decoration: none;
+    font: bold;
+    display: inline-block;
+    font-size: larger;
+}

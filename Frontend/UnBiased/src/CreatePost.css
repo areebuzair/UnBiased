@@ -1,0 +1,86 @@
+/* Container for the whole page */
+.createPostPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* background-color: #f0f0f0; */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+  }
+  
+  /* Form container */
+  .cpContainer {
+    background-color: #ffffff91;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+  }
+  
+  /* Heading */
+  .cpContainer h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #000000;
+    text-align: center;
+  }
+  
+  /* Input group styling */
+  .inputGp {
+    margin-bottom: 15px;
+  }
+  
+  /* Labels */
+  .inputGp label {
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #1f1f1f;
+  }
+  
+  /* Input fields */
+  .inputGp input,
+  .inputGp textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  /* Textarea field */
+  .inputGp textarea {
+    min-height: 150px;
+    resize: vertical;
+  }
+  
+  /* Submit button */
+  .cpContainer button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Button hover effect */
+  .cpContainer button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Disable button when uploading */
+  .cpContainer button[disabled] {
+    background-color: #aaa;
+    cursor: not-allowed;
+  }
+  
