@@ -45,8 +45,8 @@ export default function VerifyBot() {
             </p>
         ))}
         <form onSubmit={sendRequest}>
-            <textarea onInput={(e) => setMessage(e.target.value)} value={Message}></textarea><br />
-            <button disabled={Loading}>{Loading ? <>Loading...</> : <>Send Message</>}</button>
+            <textarea onInput={(e) => setMessage(e.target.value)} value={Message} placeholder="What rumour did you hear?"></textarea><br />
+            <button disabled={Loading || Message.length==0}>{Loading ? <>Loading...</> : <>Send Message</>}</button>
         </form>
     </div>
 }

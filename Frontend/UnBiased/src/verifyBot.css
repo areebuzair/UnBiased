@@ -40,6 +40,10 @@
     background-color: #646365;
     color: #fff;
 }
+.verifyBot textarea::placeholder{
+    color: #222;
+    font-style: italic;
+}
 
 .verifyBot button {
     padding: 10px 20px;
@@ -50,6 +54,14 @@
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s;
+}
+
+.verifyBot button:disabled,
+.verifyBot button:disabled:hover {
+    background-color: #747474;
+    transform: scale(0.95);
+    color: red;
+    cursor: default;
 }
 
 .verifyBot button:hover {

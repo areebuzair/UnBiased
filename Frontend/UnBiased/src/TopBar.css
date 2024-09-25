@@ -17,7 +17,7 @@
 
 .button-group {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-grow: 1;
 }
 
@@ -37,7 +37,68 @@
 
 .top-bar-button:hover {
   background-color: #565687;
-  transform: scale(1.05);/
+  transform: scale(1.05);
+}
+
+.search-icon,
+.menu-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.menu-icon {
+  margin-left: 5px;
+  display: none;
+}
+
+@media only screen and (max-width: 700px) {
+  .button-group {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-height: 100vh;
+    width: 0px;
+    max-width: 100%;
+    z-index: 10000;
+    background-color: #3e3e6a;
+    margin: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    transition: width 0.1s;
+  }
+
+  .button-group.open {
+    width: 400px;
+  }
+
+  .top-bar-button {
+    display: block;
+    border-radius: 0;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: left;
+    margin: 0;
+  }
+
+  .top-bar-button:hover {
+    background-color: #565687;
+    transform: scale(1);
+  }
+
+  .top-bar {
+    justify-content: flex-end;
+  }
+
+  .search-container form {
+    width: 100%;
+  }
+
+  .menu-icon {
+    display: inline-block;
+  }
 }
 
 .search-container {
@@ -47,14 +108,10 @@
 }
 
 
-.search-icon {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 5px;
-}
 
-.search-icon img {
+
+.search-icon img,
+.menu-icon img {
   width: 25px;
   height: 25px;
 }
@@ -68,6 +125,7 @@
   outline: none;
   transition: width 0.5s, opacity 0.5s;
   width: 0;
+  max-width: 40vw;
   opacity: 0;
   background-color: #3e3e6a;
   color: white;
